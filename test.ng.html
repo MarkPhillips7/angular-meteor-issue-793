@@ -1,0 +1,15 @@
+<div class="container">
+    <header>
+        <h1>{{cat.name}}'s favorite activities</h1>
+    </header>
+
+    <ul>
+        <li ng-repeat="activity in cat.activities">
+            <span>{{activity}}</span>
+            <button ng-click="delete(activity)">Delete</button>
+        </li>
+    </ul>
+
+    <button ng-click="save()">Save</button>
+
+</div>
