@@ -3,13 +3,23 @@
         <h1>{{cat.name}}'s favorite activities</h1>
     </header>
 
+    <h3>Delete a main item and a sub item and click Save. Deleted items end up as null.</h3>
+
     <ul>
         <li ng-repeat="activity in cat.activities">
-            <span>{{activity}}</span>
-            <button ng-click="delete(activity)">Delete</button>
+            <span>{{activity.name}}</span>
+            <button ng-click="deleteActivity(activity)">Delete</button>
+            <ul>
+                <li ng-repeat="note in activity.notes">
+                    <span>{{note}}</span>
+                    <button ng-click="deleteNote(activity,note)">Delete</button>
+                </li>
+            </ul>
         </li>
     </ul>
 
     <button ng-click="save()">Save</button>
+
+
 
 </div>

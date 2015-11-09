@@ -13,8 +13,12 @@ if (Meteor.isClient) {
         $scope.cat.save();
       };
 
-      $scope.delete = function(activity) {
+      $scope.deleteActivity = function(activity) {
         $scope.cat.activities.splice($scope.cat.activities.indexOf(activity), 1);
+      }
+
+      $scope.deleteNote = function(activity,note) {
+        $scope.cat.activities[$scope.cat.activities.indexOf(activity)].notes.splice(activity.notes.indexOf(note), 1);
       }
     }]);
 }
@@ -22,7 +26,16 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     var catId = Cats.findOne({"name": 'Dinah'});
-    var activities = ['biting','purring','scratching'];
+    var activities = [{
+      name:'biting',
+      notes: ['rarely draws blood', 'often after purring']
+    }, {
+      name:'purring',
+      notes: ['don\'t be fooled', 'will bite if pet for too long']
+    }, {
+      name:'scratching',
+      notes: ['rarely draws blood', 'often after purring']
+    }];
 
     if (!catId) {
       Cats.insert({
